@@ -79,6 +79,8 @@
 \newcommand{\End}{\mathrm{End}}
 \newcommand{\M}{\mathrm{M}}
 \newcommand{\ggT}{\mathrm{ggT}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Def}{\overset{\text{Def:}}{\Leftrightarrow}}
 
 
 % HEADERS
@@ -2387,7 +2389,7 @@ $$A\approx \left(\begin{array}{c|ccc}
     Wegen 4.4 ist $$d_1(J)=...=d_{e-2}(J)=1\overset{\text{Invariantenteiler}}{\underset{\text{satz}}{\implies} }B_f\approx J$$
     \end{proof}
     \begin{satz}[Jordansche Normalform]
-        Sei $A\in \M_{n,n}(K),\chi_{A}^{\text{char}}$ zerfalle in $K[t]$ in Linearfaktoren. Dann existieren Jordanmatrizen $J-1=J(\lambda_1,e_1),...,J_m(\lambda_m,e_m)$ über $K$, sodass
+        Sei $A\in \M_{n,n}(K),\chi_{A}^{\text{char}}$ zerfalle in $K[t]$ in Linearfaktoren. Dann existieren Jordanmatrizen $J_1=J(\lambda_1,e_1),...,J_m(\lambda_m,e_m)$ über $K$, sodass
         $$ A\approx \begin{pmatrix}
             J_1& & & \\
             & J_2 & &\\
@@ -2461,13 +2463,13 @@ $$A\approx \left(\begin{array}{c|ccc}
                     & &B_{h_3}
                 \end{pmatrix} &\approx \begin{pmatrix} 
                     J(3,1)& & \\
-                    & J_(2,1)& \\
-                    & & J_(3,2)
+                    & J(2,1)& \\
+                    & & J(3,2)
                 \end{pmatrix}\\
                 &\approx \begin{pmatrix} 
                     J(3,1)& & \\
-                    & J_(3,2)& \\
-                    & & J_(2,1)
+                    & J(3,2)& \\
+                    & & J(2,1)
                 \end{pmatrix}\\
                 &= \begin{pmatrix}
                     3 & & & \\
@@ -2511,5 +2513,176 @@ $$A\approx \left(\begin{array}{c|ccc}
     \end{align*}
         \end{enumerate}
         \end{bsp}
+        \part{Moduln}
+        \section{Grundlagen über Moduln}
+        \begin{notation}
+            In deisem Abschnitt sei $R$ stets ein Ring.
+        \end{notation}
+        \begin{definition}
+            \begin{align*}
+            \intertext{Eine Menge $M$ zusammen mit einer Verknüpfung}
+            +&: M\times M \longrightarrow M, (x,y)\mapsto x+y \text{ (genannt Addition)}\\
+            \intertext{und einer äußeren Verknüpfung}
+            \cdot&: R\times M \longrightarrow M ,(a,x)\mapsto ax \text{ (genannt skalare Multiplikation)}\\
+            \intertext{heißt ein $R$-Modul, wenn das folgende gilt:}
+            \end{align*}
+            \begin{enumerate}[(M1)]
+                \item $(M,+,0)$ ist eine abelsche Gruppe. Das Inverse zu $x\in M$ bezeichenen wir mit $-x.$ 
+                \item Die skalare Multiplikation ist in folgender Weise mit den Verknüpfungen auf $M$ und $R$ verträglich:
+                \begin{align*}
+                    (a+b)x&=ax+bx\\
+                    a(x+y)&=ax+ay\\
+                    (ab)x&=a(bx)\\
+                    1x&=x
+                \end{align*}
+                für alle $x,y\in R, x,y\in M.$
+            \end{enumerate}
+        \end{definition}
+        \begin{anm}
+            Wir lassen die Verknüpfungen meist aus der Notation heraus und schreiben kurz "$M$ $R$-Modul."
+        \end{anm}
+        \begin{bsp}
+            \begin{enumerate}[(a)]
+                \item $K$ Körper, $V$ $K$-VR $\implies V$ ist ein $K$-Modul
+                \item $\R=\Z$: $(G,+,0)$ abelsche Gruppe wird zum $\Z$-Modul durch 
+                $$\Z \times G \longrightarrow G, (u,g) \mapsto \left\{\begin{array}{cc}
+                    \underbrace{g+...+g}_{\text{n-mal}}& \text{ falls }n\in \N\\
+                    0 & \text{ falls }n=0\\
+                    -(\underbrace{g+...+g}_{\text{n-mal}})& \text{ falls }-n\in \N
+                \end{array}\right.$$
+                Umgekehrt ist jeder $\Z$-Modul $M$ eine abelsche Gruppe bzgl. Addition auf $M$.
+                Die Zuordnungen $\{\Z-\text{Modul}\}\longrightarrow \{\text{abelsche Gruppe}\}$ sind invers zueindander.
+                \item $I\subseteq R$ Ideal $\implies $ $I$ ist ein $R$-Modul (Addition: auf $I$ eingeschränkte Addtion von $R$, skalare Multiplikation: $R\times I \longrightarrow I, (a,x)\mapsto ax$). Wohldefiniert, weil $I$ Ideal. Insbesondere ist $R$ ein $R$-Modul.
+                \item $I\subseteq R$ Ideal $\implies$ $R/I$ ist ein $R$-Modul. (skalare Multiplikation: $R\times R/I\longrightarrow R/I, (a,\overline{x})\mapsto \overline{ax}$). Das ist wohldefiniert, denn: $\overline{x}=\overline{y}\implies x-y\in I\implies a(x-y)\in I \implies ax-ay\in I \implies \overline{ax}=\overline{ay}$
+                \item $K$ Körper, $V$ $K$-Vektorraum, $\varphi\in \End(V)$\newline
+                $\implies V $ ist $K[t]$-Modul via skalarer Multiplikation $K[t]\times v\longrightarrow V, (f,v)\mapsto f(\varphi)(v)$
+            \end{enumerate}
+        \end{bsp}
+        \begin{definition}
+            Seien $M,N$ $R$- Moduln, $\varphi: M\longrightarrow N$
+            \begin{align*}
+                \varphi \text{ heißt }(R\text{\textbf{-Modul)-Homomorphismus }}&\overset{\text{Def}}{\Leftrightarrow}\text{ Für alle }x,y\in M, a\in R \text{ gilt:}\\
+                &\varphi(x+y)=\varphi(x)+\varphi(y)\\
+                &\varphi(ax)=a\varphi(x)\\
+                \varphi \text{ heißt }(R\text{\textbf{-Modul)-Homomorphismus }}&\overset{\text{Def}}{\Leftrightarrow} \varphi \text{ ist bijektiver }R\text{-Modulhom.}
+            \end{align*}
+            Existiert ein Isomorphismus zwischen $M,N$, so heißen $M,N$ \textbf{isomorph}. Wir schreiben dann $M\cong N.$
+        \end{definition}
+        \begin{notation}
+            $\operatorname{Hom}_R(M,N):=\{\varphi:M\longrightarrow N|\varphi \text{ ist }R\text{-Modulhom.}\}$
+        \end{notation}
+        \begin{anm}
+            $\Hom_K(M,N)$ ist selbst ein $R$-Modul via 
+            \begin{align*}
+                (\varphi+\psi)(x)&:=\varphi(x)+\psi(x)\\
+                (\alpha\varphi)(x)&:=\alpha\varphi(x)
+            \end{align*}
+            für $\varphi,\psi\in \Hom_K(M,N), x\in M , \alpha\in R$
+        \end{anm}
+        \begin{definition}
+            Seien $M$ $R$-Modul, $N\subseteq M$. \newline 
+            $N$ heißt ein \textbf{Untermodul} von $M$ $\overset{\text{Def}}{\Leftrightarrow}$ Folgende Bedingungen sind erfüllt:
+            \begin{enumerate}[(U1)]
+                \item $0\in N$
+                \item $x,y\in N\implies x+y\in N$
+                \item $\alpha \in R, x\in N\implies \alpha x \in N$
+            \end{enumerate}
+        \end{definition}
+        \begin{bsp}
+            \begin{enumerate}[(a)]
+                \item $K$ Körper, $V$ $K$-Vektorraum $\implies $ Untermoduln von $V=$ Unterräume von $V$
+                \item $M=R$ als $R$-Modul, $implies $ Untermoduln von $M = $ Ideale in $R$
+            \end{enumerate}
+        \end{bsp}
+        \begin{bem}
+            Seien $M$ $R$-Modul, $N\subseteq M$ Untermodul.\newline
+            Dann gilt: Durch $x \sim y \Def x-y\in N$ ist eine Äquivalenzrelation auf $M$ definiert. Die Äquivalenzklasse $\overline{x}$ von $x\in M $ ist gegeben durch 
+            $$\overline{x}=x+N=\{x+y|y\in N\}$$
+            Die Menge aller Äquivalenzklassen bezeichnen wir mit $N/N.$ $M/N$ wird mit den Verknüpfungen 
+            \begin{align*}
+            &+:M/N\times M/N \longrightarrow M/N, \overline{x}+\overline{y}:=\overline{x+y}\\
+            &\cdot:M/N\times M/N \longrightarrow M/N, \alpha\cdot \overline{x}=\overline{\alpha x}
+            \end{align*}
+            zu einem $R$-Modul, dem \textbf{Faktormodul} $M/N.$
+            Die \textbf{kanonische Projektion} $\pi:M\longrightarrow M/N,x\mapsto \overline{x}$ ist ein surjektiver $R$-Modulhom.
+        \end{bem}
+        \begin{proof}
+            analog zu $K$-VR (LA 1 Lemma 1.32)
+        \end{proof}
+        \begin{bem}
+            Seien $M$ $R$-Modul, $N\subset M$ Untermodul, $\pi:M\longrightarrow M/N$ kanonische Projektion.\newline 
+            Dann sind die Abbildungen 
+            \begin{align*}
+                \{\text{Untermoduln in }M/N\}&\longrightarrow \{\text{ Untermoduln }\tilde{N}\text{ von }M \text{ mit }\tilde{N} \supseteq N \}\\
+                L &\mapsto \pi^{-1}(L)\\
+                \{\text{Untermoduln in }M/N\}&\longleftarrow \{\text{ Untermoduln }\tilde{N}\text{ von }M \text{ mit }\tilde{N} \supseteq N \}\\
+                \pi(\tilde{N})\mapsto \tilde{N}
+            \end{align*}
+            zueinander inverse inklusionserhaltende Bijektionen.
+        \end{bem}
+        \begin{proof}
+            analog zu 1.14/Übungsblatt 7
+        \end{proof}
+        \begin{bem}
+            Seien $M,N$ $R$-Moduln, $\varphi:M\longrightarrow N $ ein Homomorphismus. Dann gilt
+            \begin{enumerate}[(a)]
+                \item $\ker\varphi:=\{x\in M|\varphi(x)=0\}$ ist ein Untermodul von $M$
+                \item $\varphi$ ist injektiv $\Leftrightarrow$ $\ker\varphi=\{0\}$
+                \item $\mathrm{im}\varphi :=\varphi(M)$ ist ein Untermodul von $N$.
+                \item $\mathrm{coker}\varphi:N/\in \varphi$ heißt der \textbf{Cokern von} $\varphi$, es gilt: $\varphi$ surjektiv $\Leftrightarrow$ $\mathrm{coker}\varphi=\{0\}$
+                \item (Homomorphiesatz für Modulhom.) $\varphi$ induziert einen Isomorphismus
+                $$\psi: M/\ker\varphi\longrightarrow \mathrm{im} \varphi, x+\ker\varphi\mapsto\varphi(x),$$
+                d.h. $M/\ker\varphi\cong\mathrm{im}\varphi$
+            \end{enumerate}
+        \end{bem}
+        \begin{proof}
+            analog wie für $K$-VR 
+        \end{proof}
+        \begin{bem}
+            Seien $M$ $R$-Modul, $(M_i)_{i\in I}$ Familie von Untermoduln von $M.$
+            Dann gilt: 
+            \begin{enumerate}[(a)]
+                \item $\sum\limits_{i\in I}M_i:=\{\sum\limits_{i\in I}x_i|x_i \in M_i,x_i=0\text{ für fast alle }i\in I\}$ ist ein Untermodul von $M$, dieser heißt die \textbf{Summe} der $M_i,i\in I$
+                \item $\bigcap\limits_{i\in I}M_i$ ist ein Untermodul von $M$
+            \end{enumerate}
+        \end{bem}
+        \begin{proof}
+            nachrechnen.
+        \end{proof}
+        \begin{satz}[Isomorphiesätze]
+            Seien $M$ $R$-Modul, $N,P\subseteq M$ Untermoduln. Dann gilt:
+            \begin{enumerate}
+                \item $(N+P)/N\cong P/N\cap P$
+                \item Falls $P\subseteq N$, dann $(M/P)/(N/P)\cong M/N.$
+            \end{enumerate}
+        \end{satz}
+        \begin{proof}
+            \begin{enumerate}[(a)]
+                \item Betrachte die Abbildung $\varphi:P\longrightarrow (N+P)/N, x\mapsto x+N$
+                \begin{itemize}
+                    \item $\varphi$ ist Modulhom.: klar 
+                    \item $\varphi$ ist surjektiv: Sei $z\in (N+P)/N\implies $ Es existieren $N\in N, p\in P$ sodass $z=n+p+N\implies z=p+N=\varphi(p)$
+                    \item $\ker\varphi=\{p\in P|\underbrace{p+N=N}_{\Leftrightarrow p\in N}\}=P\cap N$
+                \end{itemize}
+                Behauptung folgt aus dem Homomorphiesatz.
+                \item Betrachte die Abbildung $\psi: M/P\longrightarrow M/N, x+P\mapsto x+N$
+                \begin{itemize}
+                    \item $\psi$ ist wohldefiniert, denn: $x_1+P=x_2+P\implies x_1-x_2\in P\subseteq N\implies x_1+N=x_2+N$
+                    \item $\psi$ ist Modulhom.: klar 
+                    \item $\psi$ ist surjektiv: Sei $z\in M/N\implies $ Es existiert $x\in M $ mit $z=x+N\implies z=\psi(x+P)$
+                    \item $\ker \psi=\{x+P|x+N=N\}=N/P.$
+                \end{itemize}
+                Beweis folgt aus Homomorphismus.
+            \end{enumerate}
+        \end{proof}
+        \begin{bem}
+        Seien $I\subseteq R$ Ideal, $M$ $R$-Modul.
+        $$IM:=\{\sum_{i=1}^{n}a_im_i|a_i\in I, m_i\in M,n\in \N_0\}\subseteq M$$
+        ist ein Untermodul von $M.$
+        \end{bem}
+        \begin{proof}
+            nachrechnen.
+        \end{proof}
+        
         
 \end{document}
