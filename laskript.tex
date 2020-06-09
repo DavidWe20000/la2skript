@@ -24,6 +24,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{blindtext}
 \usepackage{xpatch}
+\usepackage[all]{xy}
 
 
 
@@ -67,6 +68,7 @@
 \newtheorem*{frage}{Frage}
 \newtheorem*{erin}{Erinnerung}
 \newtheorem*{notation}{Notation}
+\newtheorem*{fazit}{Fazit}
 
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -81,6 +83,14 @@
 \newcommand{\ggT}{\mathrm{ggT}}
 \newcommand{\Hom}{\mathrm{Hom}}
 \newcommand{\Def}{\overset{\text{Def:}}{\Leftrightarrow}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Lin}{\mathrm{Lin}}
+\newcommand{\F}{\mathrm{F}}
+\newcommand{\B}{\text{\textbf{B}}}
+\newcommand{\CB}{\text{\textbf{C}}}
+\newcommand{\T}[2][1]{\mathrm{T}_{#2}^{#1}}
+\newcommand{\MS}[2][1]{\mathrm{M}_{#2}^{#1}}
+\newcommand{\id}{\mathrm{id}}
 
 
 % HEADERS
@@ -2683,6 +2693,203 @@ $$A\approx \left(\begin{array}{c|ccc}
         \begin{proof}
             nachrechnen.
         \end{proof}
+        \begin{definition}
+            Seien $M$ $R$-Modul, $N,P$ Untermoduln von $M$.
+            $$(N:P):=\{a\in R|aP\subseteq N\}\subseteq R$$
+            $$\Ann(M):=(0:M)=\{a\in R|aM=0\}=\{a\in R |am=0\text{ für alle }m\in M\}\subseteq R$$ heißt der \textbf{Annullator} von $M$.
+        \end{definition}
+        \begin{anm}
+            \begin{itemize}
+                \item $(N:P)$ ist ein Ideal in $R$, insbesondere ist $\Ann(M)$ ein Ideal in $R$
+                \item $M$ $R$-Modul, $I\subseteq R$ Ideal mit $I\subseteq \Ann(M)$, dann wird $M$ zum $R/I$-Modul via $R/I\times M\longrightarrow M, (r+I)\cdot x:=rx.$ (Wohldefiniert, denn: $r+I=s+I\implies r-s\in I\subseteq \Ann(M)\implies (r-s)x=0\implies rx=sx$)
+            \end{itemize}
+        \end{anm}
+        \begin{bsp}
+            \begin{enumerate}[(a)]
+                \item $R=\Z$, $M=\Z/5\Z.$ \newline 
+                $\Ann(M)=5\Z,$ denn. Für $\overline{x}\in \Z/5\Z$ ist $5\overline{x}=\overline{0},$ d.h. $5\in \Ann(M)\implies 5\Z\subseteq \Ann(M)\overset{5\Z\text{ maximal}}{\implies}\Ann(M)=5\Z$ oder $\Ann(M)=\Z.$ Falls $\Ann(M)=\Z$, dann $1\in \Ann(M),$ also $1\cdot M=0,$ d.h. $1\overline{x}=\overline{0}$ für alle $\overline{x}\in \Z/5\Z.$\newline\textit{Widerspruch.}
+                \item $R=\Z,M=\Z.$ Untermoduln von $M=$ Ideale von $\Z.$ 
+                \begin{align*}
+                    (3\Z:4\Z)&=\{x\in \Z|x4\Z\subseteq 3\Z\}=3\Z \text{ (analoge Argumentation wie in (a))}\\
+                    (6\Z:2\Z)&=\{x\in \Z|x2\Z\subseteq 6\Z\}=3\Z\\
+                    \Ann(\Z)&=\{x\in \Z|x\Z=0\}=\{0\}
+                \end{align*}
+            \end{enumerate}
+        \end{bsp}
+        \begin{definition}
+            Seien $M$ $R$-Modul, $x\in M.$
+            $$Rx:=\{rx|r\in R\}\subseteq M\text{ heißt der \textbf{ von x erzeugte Untermodul} von }M$$
+            Sei $(x_i)_{i\in I}$ eine Familie von Elementen aus $M$.
+            $$\Lin_((x_i)_{i\in I}):=\sum_{i\in I}Rx_i=\{\sum_{i\in I}a_ix_i|a_i\in R,a_i=0\text{ für fast alle }i\in I\}$$
+            heißt der \textbf{von $(x_i)_{i\in I}$ erzeugte Untermodul} von $M$ (\textbf{lineare Hülle} von $(x_i)_{i\in I}$)
+        \end{definition}
+        \begin{definition}
+            $M$ $R$-Modul, $(x_i)_{i\in I}$ Familie von Elementen aus $M$. 
+            \begin{align*}
+                \intertext{$(x_i)_{i\in I}$ heißt}
+                \text{\textbf{Erzeugendensystem (ES)} von }M &\Def M=\Lin((x_i)_{i\in I})\\
+                \text{\textbf{linear unabhängig }}&\Def \text{ Aus }\sum_{i\in I}a_ix_i=0, \text{ wobei }a_i\in R, a_i=0 \text{ für fast alle }i\in I,\\
+                &\text{ folgt }a_i=0 \text{ für fast alle }i\in I\\
+                \text{\textbf{Basis} von }M&\Def (x_i)_{i\in I}\text{ ist ein linear unabhängiges ES von }M
+                \intertext{$M$ heißt}
+                \text{\textbf{endlich erzeugt} (e.e)}&\Def M \text{ besitzt ein endliches ES}\\
+                \text{\textbf{frei}}&\Def M \text{ besitzt eine Basis}
+            \end{align*}
+        \end{definition}
+        \begin{bsp}
+            \begin{enumerate}[(a)]
+                \item $K$ Körper $\implies$ LA1: Jeder e.e. $K$-VR ist frei; mit Hilfe des Zornschen Lemmas zeigt man: JEder $K$-VR hat eine Basis, ist also frei.
+                \item $M=R$ als $R$-Modul $\implies R$ ost e.e. und frei: 
+                \begin{itemize}
+                    \item $(1)$ ist endliches ES (denn: jedes $x\in R$ lässt sích schreiben als $x=x\cdot 1$)
+                    \item $(1)$ linear unabhängig: $a\cdot 1=0$ für ein $a\in R\implies a=0$
+                \end{itemize}
+                \item Sei $n\in \N,n>1.$
+                \begin{itemize}
+                    \item $\Z/n\Z$ ist e.e. $\Z$-Modul, denn:
+                    \begin{align*}
+                    (\overline{1}) &\text{ ist endl. ES von }\Z/n\Z\text{ als }\Z\text{-Modul, da }\Lin((\overline{1}))\\
+                    &=\{r\cdot \overline{1}|r\in \Z\}=\Z/n\Z
+                    \end{align*}
+                    \item $\Z/n\Z$ ist kein freier $\Z$-Modul:
+                    Sei $x=\overline{a}\in \Z/n\Z\implies nx=n\overline{a}=\overline{0},$ aber $n\neq 0\implies (x)$ linear abhängig. $\implies$ Jede Familie $\neq ()$ in $\Z/n\Z$ ist linear abhängig. Insbesondere kann $\Z/n\Z$ keine Basis als $\Z$-Modul haben. (Aber: $\Z/n\Z$ ist frei als $\Z/n\Z$-Modul)
+                \end{itemize}
+                    \item (verallgemeinert (c)): \newline 
+                    $0\not\subseteq I \not\subseteq R$ Ideal, $M=R/I\implies M$ ist ein e.e. $R$-Modul, der frei ist. Denn:
+                    \begin{itemize}
+                        \item  $(\overline{1})$ ist endl. ES, denn $\Lin((\overline{1}))=\{r\cdot \overline{1}|r\in R\}=\{\overline{r}|r\in R\}=R/I=M$
+                        \item Sei $x=a+I\in R/I,b\in I,b\neq 0\implies bx=b(a+I)=\underset{\in I}{ba}+I\implies (x)$ linear abh.$\implies$ Jede Familie $\neq ()$ ist linear abh. $\overset{R/I\neq 0}{\implies}R/I$ hat keine Basis als $R$-Modul. 
+                    \end{itemize}
+            \end{enumerate}
+        \end{bsp}
+        \begin{fazit} Es gibt Moduln, die keine Basis haben, die also nicht frei sind.
+        \end{fazit}
+        \begin{bem}
+            $M$ freier $R$-Modul mit Basis $(x_i)_{i\in I}$ wobei $|I|=\infty.$
+            Dann ist $M$ nicht e.e. Insbsondere gilt: Ist $M$ ein e.e. und freier $R$-Modul, dann ist jede Basis von $M$ endlich.
+        \end{bem}
+        \begin{proof}
+            Sei $z_1,...,z_s$ ein endl. ES von $M$, dann ist jedes $z_i$ Linearkombination endlich vieler $x_i.$ D.h. es existiert $J\not\subseteq I$ endl. mit $M=\Lin((z_1,...,z_s))\subseteq \Lin((x_j)_{j\in J})\subseteq M.$ $\implies M=\Lin((x_j)_{j\in J}).$ Es existiert $K\in I\setminus J,$ insbesondere ist $x_k\in \Lin((x_j)_{j\in J})\implies (x_i)_{i\in J}$ linear unabhängig. \textit{Widerspruch.}
+        \end{proof}
+        \begin{frage}
+            $M$ e.e. freier $R$-Modul. Hat jede Basis von $M$ dieselbe Länge? \newline 
+            Antwort: Ja (später)
+        \end{frage}
+        \begin{anm}
+            Untermoduln e.e. freier $R$-Moduln sind im Allgemeinen weder e.e. noch frei.
+        \end{anm}
+        \begin{bem}
+            Sei $(M_i)_{i\in I}$ Familie von $R$-Moduln.
+            \begin{enumerate}[(a)] 
+                \item $\prod\limits_{i\in I}M_i:=\{(x_i)_{i\in I}|x_i\in M_i\}$ ist mit komponentenweiser Addition und skalarer Multiplikation (d.h. $(x_i)_{i\in I}+(y_i)_{i\in I}:=(x_i+y_i)_{i\in I}, r(x_i)_{i\in I}:= (rx_i)_{i\in I}$) ein $R$-Modul, das \textbf{direkte Produkt} der $M_i,i\in I.$
+                \item $\bigoplus\limits_{i\in I}M_i:=\{(x_i)_{i\in I}|x_i\in M_i,x_i=0\text{ für fast alle }i\in I\}$ ist mit komponentenweiser Addition und skalarer Multiplikation ein $R$-Modul, dei \textbf{direkte Summe} der $M_i,i\in I$
+            \end{enumerate}
+            IsT $I$ endlich, dann ist $\bigoplus\limits_{i\in I}M_i=\prod\limits_{i\in I}M_i.$
+        \end{bem}
+        \begin{notation}
+            $M$ $R$-Modul. \newline
+            $$M^{I}:=\prod\limits_{i\in I}M, M^{(I)}:=\bigoplus\limits_{i\in I}M.$$
+            Spezialfall: $M=R, I=\{1,...,n\}\implies RÎ=R^{(I)}=R^n=\bigoplus\limits_{i=1}^{n}R=\underbrace{R\oplus...\oplus R}_{n-\text{mal}}$
+        \end{notation}
+        \begin{proof}
+            rechnet man nach.
+        \end{proof}
+        \begin{bsp}
+        $R^n$ ist frei mit Basis $(e_1,...,e_n)$, wobei $e_i=(0,...,0,\underbrace{1}_{i-\text{te Stelle}},0,...,0)$
+        \end{bsp}
+        \begin{bem}
+            $M$ freier $R$-Modul, $B=(x_i')_{i\in I}$ Basis von $M.$ Dann existiert ein $R$-Modulisomorphismus
+            $$\boldsymbol{\Phi}_B:R^{(I)}=\bigoplus_{i\in I}R\longrightarrow M,(a_i)_{i\in I}\mapsto \sum_{i\in I}a_ix_i$$
+        \end{bem}
+        \begin{proof}
+            \begin{itemize}
+                \item $\boldsymbol{\Phi}_B$ wohldefiniert, da für $(a_i)_{i\in I}\in R^{(I)}$ fast alle $a_i=0,$ d.h. $\sum_{i\in I}a_ix_i$ macht Sinn.
+                \item  $\boldsymbol{\Phi}_{B}$ Hom.: klar 
+                \item $\boldsymbol{\Phi}_{B}$ surj., da $B$ ES von $M$
+                \item $\boldsymbol{\Phi}_{B}$ inj., da $B$ linear unabhängig
+            \end{itemize}
+        \end{proof}
+        \begin{fg}
+            $M$ $R$-Modul. Dann sind äquivalent:
+            \begin{enumerate}[(i)]
+                \item $M$ ist frei
+                \item Es existiert eine Menge $I$ mit $M\cong R^{(I)}=\bigoplus\limits_{i\in I} R$
+            \end{enumerate}
+        \end{fg}
+        \begin{proof}
+            \begin{enumerate}[(i)$\implies$ (ii):]
+                \item aus 6.20
+                \item [(ii) $\implies$ (i):] $R^{(I)}=\bigoplus\limits_{i\in I}R$ hat eine Basis $(e_i)_{i˜in I}$, mit $(e_i)_j=\delta_{ij}.$ Da Modulisom. Basen auf Basen schicken, folgt die Behauptung. 
+            \end{enumerate}
+        \end{proof}
+        \begin{anm}
+            Moduln der Form $R^{I}$ sind im Allgemeinen nicht frei. (Ausnahmen z.B. wenn $R$ Körper, oder $I$ endlich)
+        \end{anm}
+        \begin{ziel}
+            Darstellungsmatrizen für Homomorphismen zwischen e.e. freien $R$-Moduln wie in LA1.
+        \end{ziel}
+        \begin{satz}
+            $A\in\M_{m,n}(R).$ Setze $\F{m,n}(A):R^n\longrightarrow R^m, x\mapsto Ax.$ Dann ist die Abbildung 
+            \begin{align*}
+                \F_{m,n}:\M_{m,n}(R)&\longrightarrow \Hom_R(R^n,R^m)\\
+                A&\longmapsto \F_{m,n}(A)
+            \end{align*}
+            ist ein Isomorphismus von $R$-Moduln.
+        \end{satz}
+        \begin{proof}
+            ganz analog zu LA1, 19/20, Satz 3.6.
+        \end{proof}
+        \begin{fg}
+            Seien $M.N$ e.e. freie $R$-Moduln.
+            \begin{align*}
+                \B&=(x_1,...,x_n) \text{ Basis von }M\\
+                \CB&=(y_1,...,y_m) \text{ Basis von}N\\
+                \boldsymbol{\Phi}_{\B}&:R^n\longrightarrow M, (r_1,...,r_n)\longmapsto \sum\limits_{i=1}^{n}r_ix_i \text{ (Isom. aus 6.20)}\\
+                \boldsymbol{\Phi}_{\CB}&:R^m\longrightarrow M, (r_1,...,r_m)\longmapsto \sum\limits_{i=1}^{n}r_iy_i 
+            \end{align*}
+            Sei $A\in \M_{m,n}(R).$ Erhalte kommutatives Diagramm:
+            \[
+                \begin{xy}
+                    \xymatrix{
+                       R^n \ar[rrr]^{\F_{m,n}(A)} \ar[ddd]_{\boldsymbol{\Phi}_{\B}}^{\cong} &&& R^m \ar[ddd]_{\cong}^{\boldsymbol{\Phi}_{\CB}}\\
+                       &&&\\
+                       &&&\\
+                       M \ar[rrr]_{\boldsymbol{\Phi}_{\CB}\circ \F_{m,n}(A)\circ \boldsymbol{\Phi}_{\B}^{-1}} &&& N
+                    }
         
+                \end{xy}
+            \] und damit einen Isomorphismus von $R$-Moduln
+            \begin{align*}
+                \F_{\B}^{\CB}:\M_{m,n}(R)&\longrightarrow \Hom_R(M,N)\\
+                A&\longmapsto \boldsymbol{\Phi}_{\CB}\circ \F_{m,n}(A)\circ \boldsymbol{\Phi}_{\B}^{-1}
+            \end{align*}
+            Den dazu inversen Isomorphismus bezeichen wir mit $\M_{\CB}^{\B}: \Hom_R(M,N)\overset{\sim}{\longrightarrow}\M_{m,n}(R).$
+            $M_{\CB}^{\B}(f)$ heißt die \textbf{Darstellungsmatrix} von $f$ bezüglich der Basen $\B$ und $\CB.$ (Vgl. LA1 Korollar 3.12)
+        \end{fg}
+        \begin{anm}
+            In den Spalten von $\M_{\CB}^{\B}(f)$ stehen die Koordinaten von $f(x_1),...,f(x_n)$ bezüglich der Basis $\CB=(y_1,...,y_m).$
+        \end{anm}
+        \begin{definition}
+            Seien $M$ e.e. freier $R$-Modul, $\B=(x_1,...,x_n),\B'=(x_1',...,x_n')$ Basen von $M.$
+            $$\T[\B']{\B}:=\MS[\B']{\B}(\id_M)\text{ heißt die \textbf{Transformationsmatrix} von }\B \text{ nach }B'.$$
+        \end{definition}
+        \begin{anm}
+            $\T[\B']{\B}$ ist invertierbar, $(\T[\B']{\B})^{-1}=\T[\B]{\B'}$ (analog zu LA1, Lemma 3.14)
+        \end{anm}
+        \begin{satz}[Basiswechselsatz]
+            Seien $M,N$ e.e freie $R$-Moduln, $f:M\longrightarrow N $ $R$-Modulhom.
+            \begin{align*}
+                \B&=(x_1,...,x_n), \B'=(x_1',...,x_n') \text{ Basen von }M\\
+                \CB&=(y_1,...,y_m), \CB'=(y_1',...,y_m') \text{ Basen von } N
+            \end{align*}
+            Dann gilt:
+            $$\MS[\CB']{\B'}=\T[\CB']{\CB}\MS[\CB]{\B}(f)(\T[\B']{\B})^{-1}$$
+        \end{satz}
+        \begin{proof}
+            wie in LA1, Satz 3.18
+        \end{proof}
+        \begin{frage}
+            $R\neq 0, R^n \cong R^m \overset{\text{?}}{\implies} n=m.$ (Ja.)
+        \end{frage}
         
 \end{document}
