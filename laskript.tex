@@ -2891,5 +2891,222 @@ $$A\approx \left(\begin{array}{c|ccc}
         \begin{frage}
             $R\neq 0, R^n \cong R^m \overset{\text{?}}{\implies} n=m.$ (Ja.)
         \end{frage}
-        
+        \part{Universelle Eigenschaften}
+        \begin{ziel}
+            Charakterisierung von bereits bekannten Konsturktionen wie direktes Produkt, direkte Summe, freier Modukn durch "universelle Eigenschaft", und zwar bis auf "eindeutige Isomorphie". Wir werden später das Tensorprodukt über eine universelle Eingeschaft definieren, anstatt sie explizit anzugeben.
+        \end{ziel}
+        \begin{notation}
+            In diesem Abschnitt sei $R$ stets ein Ring.
+        \end{notation}
+        \begin{satz}[Universelle Eigenschaft des direkten Produkts]
+            Seien $(M_i)_{i\in I}$ eine Familie von $R$-Moduln, $M=\prod\limits_{i\in I}M_i, p_i:M\longrightarrow M_i, (m_j)_{j\in I}\longmapsto m_i$ die kanonische Projektion. Dann erfüllt das Tupel $(M,(p_i)_{i\in I}$ die Eigenschaft
+         \begin{enumerate}[(UP)]
+                \item Für jeden $R$-Modul $N$ und jede Familie $(f_i)_{i\in I}$ von $R$-Modulhom. $f_i:N\mapsto M_i$ existiert genau ein $R$-Modulhom. $f:N\mapsto M $ mit $f_i=p_i\circ f$ für alle $i\in J$
+                \[ 
+                \begin{xy}
+                    \xymatrix{
+                    N \ar@{-->}[rr]^{\exists!f} \ar[dr]_{f_i} &&M\ar[dl]^{p_i}\\
+                    &M_i&
+                    }
+                \end{xy}
+                \]
+                d.h. die Abbildung von Mengen 
+                \begin{align*}
+                    \Hom_R(N,M)&\longrightarrow \prod_{i\in I}\Hom_R(N,M_i)\\
+                    f&\longmapsto (p_i\circ f)_{i\in I}
+                \end{align*}
+                ist bijektiv.
+            \end{enumerate}
+        \end{satz}
+        \begin{proof}
+            Sei $N$ ein $R$-Modul, $(f_i)_{i\in I}$ Familie von $R$-Modulhom. $f_i:N\longrightarrow M_i.$
+            \begin{enumerate}[1.]
+                \item Existenz von $f$ wie (UP)\newline
+                Setze $f:N\longrightarrow M=\prod\limits_{i\in I}M_i,n\longmapsto (f_i(n))_{i\in I}.$ Dann ist $f$ ein $R$-Modulhom., denn alle $f_i$ sind $R$-Modulhom. Es ist $(p_i\circ f)(n)=f_i(n)$ für alle $n\in N, i\in I,$ d.h. $p_i\circ f=f_i$ für alle $i\in I.$
+                \item Eindeutigkeit von $f$ wie (UP)\newline
+                Sei $f':N\longrightarrow M=\prod\limits_{i\in I}M_i$ mit $p_i\circ f'=f_i$ für alle $i\in I.$ Dann ist $p_I(f'(n))=f_i(n)$ für alle $i\in I,n\in N,$ also $f'(n)=(f_i(n))_{i\in I}=f(n).$
+            \end{enumerate}
+        \end{proof}
+        \begin{bem}
+            Seien $(M_i)_{i\in I}$ eine Familie von $R$-Moduln,
+            \begin{align*}
+                M& R\text{-Modul, }(p_i)_{i\in I}\text{ Familie von }R\text{-Modulhom. }p_i:M\longrightarrow M_i\\
+                M'& R\text{-Modul, }(p'_i)_{i\in I}\text{ Familie von }R\text{-Modulhom. }p'_i:M'\longrightarrow M_i\\
+            \end{align*}
+            Dann gilt: \newline 
+            Erfüllen $(M,(p_i)_{i\in I})$ und $(M',(p'_i)_{i\in I})$ die Eigenschaft (UP), dann gibt es genau einen $R$-Modulisom. $\boldsymbol{\Phi}:M\longrightarrow M'$ mit $p'_i\circ \boldsymbol{\Phi}=p_i$ für alle $i\in I$
+            \[ 
+                \begin{xy}
+                    \xymatrix{
+                    M \ar@{-->}[rr]_{\cong}^{\exists!\boldsymbol{\Phi}} \ar[dr]_{p_i} &&M'\ar[dl]^{p'_i}\\
+                    &M_i&
+                    }
+                \end{xy}
+                \]
+            D.h.: Durch (UP) ist $M$ eindeutig bis auf eindeutige Isomorphismie, d.h. $M,M'$ sind "kanonisch isomorph".
+        \end{bem}
+        \begin{proof}
+            $(M_i)_{i\in I}$, $(M',(p'_i)_{i\in I})$ erfüllen (UP)
+            \begin{enumerate}[1.]
+                \item Wir wenden die Eigenschaft (UP) für $(M',(p'_i)_{i\in I})$ auf $N=M,f_i=p_i$ an.\newline
+                $\implies $ Es existiert genau ein $R$-Modulhom. $\boldsymbol{\Phi}:M\longrightarrow M'$ mit $p'_i\circ\boldsymbol{\Phi}=p_i$ für alle $i\in I.$
+                \[ 
+                \begin{xy}
+                    \xymatrix{
+                    M \ar@{-->}[rr]^{\exists!\boldsymbol{\Phi}} \ar[dr]_{p_i} &&M'\ar[dl]^{p'_i}\\
+                    &M_i&
+                    }
+                \end{xy}
+                \]
+                \item Wir wenden die Eigenschaft (UP) für $(M,(p_i)_{i\in I})$ auf $N=M',f_i=p'_i$ an.\newline
+                $\implies $ Es existiert genau ein $R$-Modulhom. $\boldsymbol{\Psi}:M'\longrightarrow M$ mit $p_i\circ\boldsymbol{\Psi}=p_i'$ für alle $i\in I.$
+                \[ 
+                \begin{xy}
+                    \xymatrix{
+                    M' \ar@{-->}[rr]^{\exists!\boldsymbol{\Psi}} \ar[dr]_{p'_i} &&M\ar[dl]^{p_i}\\
+                    &M_i&
+                    }
+                \end{xy}
+                \]
+                \item Behauptung: $\boldsymbol{\Psi}\circ \boldsymbol{\Phi}=\id_M,\boldsymbol{\Phi}\circ\boldsymbol{\Psi}=\id_M,$ $(\implies \boldsymbol{\Phi}\text{ Isom., fertig})$\newline
+                Es ist $p_i\circ (\boldsymbol{\Psi}\circ\boldsymbol{\Phi})=(p_i\circ\boldsymbol{\Psi})\circ\boldsymbol{\Phi}\overset{2.}{=}p'_i\circ\boldsymbol{\Phi}\overset{1.}{=}p_i.$ $ (\ast)$ \newline
+                Wir wenden die Eigenschaft (UP) für $(M,(p_i)_{i\in I})$ auf $N=M,f_i=p_i$ an.\newline
+                $\implies $ Es existiert genau ein $R$-Modulhom. $h:M\longrightarrow M$ mit $p_i\circ h=p_i$ für alle $i\in I.$
+                \[ 
+                \begin{xy}
+                    \xymatrix{
+                    M \ar@{-->}[rr]^{\exists!h} \ar[dr]_{p_i} &&M\ar[dl]^{p_i}\\
+                    &M_i&
+                    }
+                \end{xy}
+                \]
+                $h=\id_M$ erfüllt das, wegen $(\ast)$ wefüllt das auch $h=\boldsymbol{\Psi}\circ\boldsymbol{\Phi}\implies \boldsymbol{\Psi}\circ\boldsymbol{\Phi}=\id_M.$ Analog: $\boldsymbol{\Phi}\circ\boldsymbol{\Psi}=id_{M'}.$
+            \end{enumerate}
+        \end{proof}
+        \begin{definition}[direktes Produkt über univ. Eigenschaft]
+            Seien $(M_i)_{i\in I}$ Familie von $R$-Moduln, $(p_i)_{i\in I}$ Familie von $R$-Modulhom. $p_i:M\longrightarrow M_i.$\newline
+            Das Paar $(M,(p_i)_{i\in I})$ heißt \textbf{direktes Produkt} von $(M_i)_{i\in I},$ wenn $(M,(p_i)_{i\in I})$ die Eigenschaft (UP) erfüllt.
+        \end{definition}
+        \begin{satz}[Universelle Eigenschaft der direkten Summe]
+            Seien $(M_i)_{i\in I}$ eine Familie von $R$-Moduln, $M=\bigoplus\limits_{i\in I}M_i,$
+            $$q_i:M_i\longrightarrow M,(p_i(m))_j=\left\{\begin{array}{cc}
+                m & i=j\\
+                0 & \text{sonst}
+            \end{array}
+                \right.$$
+                 der kanonische Inklusionsiso. Dann erfüllt das Tupel $(M,(q_i)_{i\in I}$ die Eigenschaft
+            \begin{enumerate}[(US)]
+                   \item Für jeden $R$-Modul $N$ und jede Familie $(f_i)_{i\in I}$ von $R$-Modulhom. $f_i:M_i\mapsto N$ existiert genau ein $R$-Modulhom. $f:M\mapsto N $ mit $f_i=f\circ q_i $ für alle $i\in J$
+                   \[ 
+                   \begin{xy}
+                       \xymatrix{
+                       M \ar@{-->}[rr]^{\exists!f}  &&N\\
+                       &\ar[ul]^{q_i}M_i\ar[ur]_{f_i}&
+                       }
+                   \end{xy}
+                   \]
+                   d.h. die Abbildung von Mengen 
+                   \begin{align*}
+                       \Hom_R(N,M)&\longrightarrow \prod_{i\in I}\Hom_R(M_i,N)\\
+                       f&\longmapsto (f\circ q_i)_{i\in I}
+                   \end{align*}
+                   ist bijektiv.
+               \end{enumerate}
+        \end{satz}
+        \begin{proof}
+            Sei $N$ $R$-Modul, $(f_i)_{i\in I}$ Familie von $R$-Modulhom. $f_i:M\longrightarrow N.$
+            \begin{enumerate}[1.]
+                \item Existenz von $f$ wie in (US):
+                $$\text{Setze:} f:M=\bigoplus_{i\in I}M_i\longrightarrow N, (m_i)_{i\in I}\longmapsto \sum_{i\in I}f_i{m}$$
+                Dann gilt 
+                \begin{itemize}
+                    \item $f$ ist wohldefiniert, denn wegen $(m_i)_{i\in I}\in \bigoplus\limits_{i\in I}M_i$ ist $m_i=0$ für fast alle $i\in I,$ d.h. $\sum\limits_{i\in I}f_i(m_i)$ ist eine endliche Summe.
+                    \item $f$ ist $R$-Modulhom., da alle $f_i$ $R$-Modulhom.
+                    \item $f\circ q_i(m)=f_i(m)$ für fast alle $m\in M_i,i\in I,$ d.h. $f\circ q_i=f_i$ für alle $i\in I.$
+                \end{itemize}
+                \item Eindeutigkeit von $f$ wie in (US):\newline
+                Sei $f':M=\bigoplus\limits_{i\in I}M_i\longrightarrow N$ $R$-Modulhom. mit $f'\circ q_i=f_i$ für alle $i\in I.$ Jedes Element $(m_i)_{i\in I}\in \bigoplus\limits_{i\in I}M_i$ ist von der Form $\sum\limits_{i\in I}q_i(m_i),$ d.h. $f'((m_i)_{i\in I})=f'(\sum\limits_{i\in I}q_i(m_i))=\sum\limits_{i\in I}f'(q_i(m_i))=\sum\limits_{i\in I}f_i(m_i)=f((m_i)_{i\in I}).$
+            \end{enumerate}
+        \end{proof}
+        \begin{anm}
+            In (US) sind im Vergleich zu (UP) genau die Pfeile umgedreht.
+        \end{anm}
+        \begin{bem}
+            Seien $(M_i)_{i\in I}$ eine Familie von $R$-Moduln,
+            \begin{align*}
+                M& R\text{-Modul, }(q_i)_{i\in I}\text{ Familie von }R\text{-Modulhom. }q_i:M_i\longrightarrow M\\
+                M'& R\text{-Modul, }(q'_i)_{i\in I}\text{ Familie von }R\text{-Modulhom. }q'_i:M_i\longrightarrow M'\\
+            \end{align*}
+            Dann gilt: \newline 
+            Erfüllen $(M,(q_i)_{i\in I})$ und $(M',(q'_i)_{i\in I})$ die Eigenschaft (US), dann gibt es genau einen $R$-Modulisom. $\boldsymbol{\Phi}:M\longrightarrow M'$ mit $ \boldsymbol{\Phi}\circ q_i=q'_i$ für alle $i\in I$
+            \[ 
+                \begin{xy}
+                    \xymatrix{
+                    M \ar@{-->}[rr]_{\cong}^{\exists!\boldsymbol{\Phi}}  &&M'\\
+                    &\ar[ul]^{q_i}M_i\ar[ru]_{q'_i}&
+                    }
+                \end{xy}
+                \]
+            D.h.: Durch (US) ist $M$ eindeutig bus auf eindeutige Isomorphismie.
+        \end{bem}
+        \begin{proof}
+            analog zu 7.2
+        \end{proof}
+        \begin{definition}[dirkete Summe über univ. Eigenschaft]
+            Seien $(M_i)_{i\in I}$ Familie von $R$-Moduln, $(q_i)_{i\in I}$ Familie von $R$-Modulhom. $q_i:M_i\longrightarrow M.$\newline
+            Das Paar $(M,(q_i)_{i\in I})$ heißt \textbf{direkte Summe} von $(M_i)_{i\in I},$ wenn $(M,(q_i)_{i\in I})$ die Eigenschaft (US) erfüllt.
+        \end{definition}
+        \begin{satz}[Universelle Eigenschaft freier Moduln]
+            $M$ freier $R$-Modul mit Basis $(x_i)_{i\in I}.$ 
+            Dann erfüllt das Tupel $(M,(x_i)_{i\in I}$ die Eigenschaft
+            \begin{enumerate}[(UF)]
+                   \item Für jeden $R$-Modul $N$ und jede Familie $(y_i)_{i\in I}$ aus $N$ existiert genau ein $R$-Modulhom. $f:M\mapsto N $ mit $f_i(x_i)=y_i $ für alle $i\in J,$
+                   d.h. die Abbildung von Mengen 
+                   \begin{align*}
+                       \Hom_R(M,N)&\longrightarrow \prod_{i\in I}N=N^{I}\\
+                       f&\longmapsto (f(x_i))_{i\in I}
+                   \end{align*}
+                   ist bijektiv.
+               \end{enumerate}
+        \end{satz}
+        \begin{proof}
+            Sei $N$ $R$-Modul, $(y_i)_{i\in I}$ Familie von Elementen aus $N$. 
+            \begin{enumerate}[1.]
+                \item Existenz von $f$ wie in (UF):\newline
+                Setze $f:M\longrightarrow N, \sum\limits_{i\in I}r_ix_i\longmapsto\sum\limits_{i\in I}r_iy_i.$
+                \begin{itemize}
+                    \item $f$ ist wohldefiniert, denn: $(x_i)_{i\in I}$ ist Basis von $M$, d.h. jedes Element aus $M$ lässt sich der Form $\sum\limits_{i\in I}r_ix_i$ mit eindeutig bestimmten $r_i\in R$ schreiben, fast alle $r_i=0.$
+                    \item $f$ ist Modulhom
+                    \item $f(x_i)=y_i:$ klar.
+                \end{itemize}
+                \item Eindeutigkeit von $f$ aus (UF):\newline
+                Sei $f': M\longrightarrow N$ $R$-Modulhom. mit $f'(x_i)=y_i$ für alle $i\in I$ $\implies f'(\sum\limits_{i\in I}r_ix_i)=\sum\limits_{i\in I}r_if'(x_i)=\sum\limits_{i\in I}r_iy_i=f(\sum\limits_{i\in I}r_ix_i),$ d.h. $f=f'.$
+            \end{enumerate}
+        \end{proof}
+        \begin{bem}
+            $M$ $R$-Modul, $(x_i)_{i\in I}$ Familie von Elementen aus $M,$ $M'$ $R$-Modul, $(x'_i)_{i\in I}$ Familie von Elementen aus $M'.$ Dann gilt:\newline
+            Erfüllen $(M,(x_i)_{i\in I})$ und $(M',(x'_i)_{i\in I})$ die Eigenschaft (UF), dann existiert genau ein $R$-Modulisom. $\boldsymbol{\Phi}:M\longrightarrow M'$ mit $\boldsymbol{\Phi}(x_i)=x'_i$ für alle $i\in I.$
+        \end{bem}
+        \begin{proof}
+            wie in 7.2
+        \end{proof}
+        \begin{Folgerung}
+            Seien $M$ $R$-Modul, $I$ Menge, $(x_i)_{i\in I}$ Familie von Elementen aus $M$. Dann sind äquivalent:
+            \begin{enumerate}[(i)]
+                \item $M$ ist frei mit Basis $(x_i)_{i\in I}$
+                \item $(M,(x_i)_{i\in I})$ erfüllt (UF)
+            \end{enumerate}
+        \end{Folgerung}
+        \begin{proof}
+            \begin{enumerate}[(i) $\implies$ (ii):]
+                \item Aus 7.7
+                \item [ii) $\implies$ (i):] Das Paar $(\bigoplus\limits_{i\in I}R,(e_i)_{i\in I})$ erfüllt (UF) (denn: $\bigoplus\limits_{i\in I}R$ ist frei mit Basis $(e_i)_{i\in I},$ hier ist $(e_i)_j=\delta_{ij}.$)$\overset{7.8}{\implies}$ Es existiert Isom. $\boldsymbol{\Phi}:\bigoplus\limits_{i\in I}R\longrightarrow M$ mit $\boldsymbol{\Phi}(e_i)=x_i$ für alle $i\in I$ $\implies$ $M$ ist frei mit Basis $(x_i)_{i\in I}$
+            \end{enumerate}
+        \end{proof}
+        \begin{fazit}
+            \begin{itemize}
+                \item Universelle Eigenschaften beschreiben Objekte bis auf eindeutige Isometrie
+                \item technische Details zur Konsturktion tauchen in univ. Eigenschaften nicht auf
+            \end{itemize}
+        \end{fazit}
 \end{document}
