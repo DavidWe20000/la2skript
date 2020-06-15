@@ -3129,11 +3129,11 @@ $$A\approx \left(\begin{array}{c|ccc}
             Seien $M,N$ $R$-Moduln.\newline 
             Ein \textbf{Tensorprodukt} von $M$ und $N$ über $R$ ist ein $R$-Modul $T$ zusammen mit einer $R$-bilinearen Abbildung $\tau:M\times N \longrightarrow T$, sd. folgende universelle Eigenschaft erfüllt ist:
             \begin{enumerate}[(UT)]
-                \item Für jeden $R$-Moduk $L$ und jede $R$-bilineare Abbildung $\beta:M\times N\longrightarrow L$ existiert genau ein $R$-Modulhom. $f:T\longrightarrow L$, sd. $f\circ \tau=\beta$ ist.
+                \item Für jeden $R$-Modul $L$ und jede $R$-bilineare Abbildung $\beta:M\times N\longrightarrow L$ existiert genau ein $R$-Modulhom. $f:T\longrightarrow L$, sd. $f\circ \tau=\beta$ ist.
                 \[ \begin{xy}
                     \xymatrix{
-                        T \ar@{-->}[rr]^{\exists!f} & & L\\
-                        &\M\times N\ar[lu]^{\tau \text{ bil.}}\ar[ur]_{\beta \text{ bil.}}&
+                        T \ar@{-->}[rr]^{\exists!f} & &L\\
+                        &\M\times N\ar[lu]^{\tau \text{ bil.}}\ar[ur]_{\beta \text{ bil.}}&\\
                     }
         
                 \end{xy}]\]
@@ -3149,7 +3149,7 @@ $$A\approx \left(\begin{array}{c|ccc}
             Seien $M,N$ $R$-Moduln. Dann gilt
             \begin{enumerate}[(a)]
                 \item Es gibt ein Tensorprodukt von $M,N$ über $R$.
-                \item Sind $T,T'$ Tensorprodukte von $M,N$ über $R$ mit bilinearer Abbildung $\tau: M\times N\longrightarrow T,\tau':M/times N\longrightarrow T',$ dann existiert genau ein $R$-Modulisom. $\boldsymbol{\Phi}:T\longrightarrow T'$ mit $\boldsymbol{\Phi}\circ \tau =\tau'$
+                \item Sind $T,T'$ Tensorprodukte von $M,N$ über $R$ mit bilinearer Abbildung $\tau: M\times N\longrightarrow T,\tau':M\times N\longrightarrow T',$ dann existiert genau ein $R$-Modulisom. $\boldsymbol{\Phi}:T\longrightarrow T'$ mit $\boldsymbol{\Phi}\circ \tau =\tau'$
                 \[ \begin{xy}
                     \xymatrix{
                         T \ar@{-->}[rr]^{\exists!\boldsymbol{\Phi}} & & L\\
@@ -3158,12 +3158,13 @@ $$A\approx \left(\begin{array}{c|ccc}
         
                 \end{xy}]\]
                 d.h.: Tensorprodukt von $M,N$ über $R$ ist eindeutig bestimmt bis auf eindeutige Isomorphie.
-                \item ISr $T$ ein Tensorprodukt von $M,N$ über $R$ mit zugehöriger $R$-bil. Abb. $\tau:M\times N\longrightarrow T$ und sehen wir für $m\in M,n\in N$ 
+                \item Ist $T$ ein Tensorprodukt von $M,N$ über $R$ mit zugehöriger $R$-bil. Abb. $\tau:M\times N\longrightarrow T$ und setzen wir für $m\in M,n\in N$ 
                 $$m\otimes n:=\tau(m,n),$$
                 dann wird $T$ erzeugt von den Elementen $m\otimes n$ für $m\in M,n\in N$ (\textbf{reine Tensoren}). Insbesondere ist jedes Element aus $T$ von der Form $\sum\limits_{i=1}^{r}m_i\otimes n_i$ mit $m_i\in M,n_i\in N,$ d.h. ist Summe von reinen Tensoren. Hierbei gilt:
                 \begin{align*}
-                     (m+m')\otimes n&=m\otimes n+m'\otimes n, m\otimes (n+n')=m\otimes n+m\otimes n'\\
-                    (rm)\otimes n=r(m\otimes n)=m\otimes (rn)
+                     (m+m')\otimes n&=m\otimes n+m'\otimes n,\\
+                      m\otimes (n+n')&=m\otimes n+m\otimes n'\\
+                    (rm)\otimes n&=r(m\otimes n)=m\otimes (rn)
                 \end{align*}
                 für alle $m,m'\in M,n,n'\in N, r\in R.$\newline
                 Notation: für Tensorprodukt von $M,N$ über $R$: $M\oplus_{R}N$
@@ -3182,9 +3183,9 @@ $$A\approx \left(\begin{array}{c|ccc}
                         \intertext{Die Elemente $[m,n]$ mit $m\in M, n\in N$ bilden eine Basis von $R^{(M\times N)},$ als $R$-Modul. Sei $U$ der Untermodul von $R^{(M\times N)},$ der von allen Elementen der folgenden Form erzeugt wird:}
                                 [m+m',n]&-[m,n]-[m',n],\\
                                 [m,n+n']&-[m,n]-[m,n'],\\
-                                [rm,n]&-r[m,n],
+                                [rm,n]&-r[m,n],\\
                                 [m,rn]&-r[m,n]\\
-                        \intertext{Setze $T:= R^{(M\times N)}/U,\tau:M\times N\overset{i}{\hookrightarrow} R^{(M\times N)}\overset{\underset{\text{kan. Proj.}}{\longrightarrow}}{\pi} T=R^{(M\times N)}/U, (m,n)\longmapsto \overline[m,n].$}
+                        \intertext{Setze $T:= R^{(M\times N)}/U,\tau:M\times N\overset{i}{\hookrightarrow} R^{(M\times N)}\overset{\pi}{\underset{\text{kan. Proj.}}{\longrightarrow}} T=R^{(M\times N)}/U, (m,n)\longmapsto \overline{[m,n]}.$}
                         \intertext{Die Elemente von $\overline{[m,n]}$ mit $m\in M,n\in N$ bilden ein ES von $T$.}
                         \end{align*}
                         \item $T$ ist zusammen mit $\tau$ ein Tensorprodukt von $M,N$ über $R:$\newline
@@ -3192,15 +3193,15 @@ $$A\approx \left(\begin{array}{c|ccc}
                             \item $T$ ist $R$-Modul nach Konstruktion
                             \item $\tau$ ist $R$-bilinear:
                             $$\tau(m+m',n)=\overline{[m+m',n]}=\overline{[m,n]}+\overline{[m',n]}=\tau(m,n)+\tau(n',n)$$
-                            andere Eigenschafen folgen analog (allesamt aus der Def. von $U$)
+                            andere Eigenschaften folgen analog (allesamt aus der Def. von $U$)
                             \item $T$ erfüllt zusammen mit $\tau$ universelle Eigenschaft:\newline
                             Existenz von $f$ wie in (UT):\newline
                             Sei $L$ $R$-Modul, $\beta:M\times N\longrightarrow L$ $R$-bil. Nach (UF) existiert $R$-Modulhom. $g:R^{(M\times N)}\longrightarrow L$ mit $g([m,n])=\beta(m,n)$ (denn: $R^{(M\times N)}$ ist frei mit Basis $([m,n])_{m\in M,n\in N}.)$
                             Es ist $g(U)=0,$ denn:
                             \begin{align*}
-                                g([m+m',n]-[m,n]-[m',n])&\overline{g \text{ $R$-Modhom.}}{=}g([m+m',n])-g([m,n])-g([m'n])\\
+                                g([m+m',n]-[m,n]-[m',n])&\overset{g \text{ $R$-Modhom.}}{=}g([m+m',n])-g([m,n])-g([m'n])\\
                                 &=\beta(m+m',n)-\beta(m,n)-\beta(m',n)\\
-                                &\overline{\text{$\beta$ $R$-bil.}}{=}0
+                                &\overset{\text{$\beta$ $R$-bil.}}{=}0
                             \end{align*}
                             Der Rest geht analog. 
                             \begin{align*}
@@ -3214,7 +3215,7 @@ $$A\approx \left(\begin{array}{c|ccc}
                             $f$ ist durch Vorgabe $f\circ \tau =\beta $ eindeutig bestimmt, da die Elemente $\overline{[m,n]}=\tau(m,n)$ den $R$-Modul $T$ erzeugen.
                         \end{itemize}
                     \end{enumerate}
-                    \item mit den "Standartargumenten", ähnlich wie in 7.2
+                    \item mit den Standartargumenten, ähnlich wie in 7.2
                     \item Wegen (b) genügt es, Aussage (c) für $T$ aus der Konstruktion in Beweis von (a) nachzurechnen. Dieses wird erzeugt von den Elementen $\overline{[m,n]}=\tau(m,n)=m\otimes n,$ und es gilt 
                     $$(m+m')\otimes n=\tau(m+m',n)\tau(m,n)+\tau(m',n)=m\otimes n+m'\otimes n$$ analog für restliche Eigenschafen. Insbesondere ist $\sum\limits_{i=1}^{k}r_i(m_i\otimes n_i)=\sum\limits_{i=1}^{k}(rm_i)\otimes n_i,$ d.h. jedes Element aus $M\otimes_R N $ ist endliche Summe von reinen Tensoren.
             \end{enumerate}
@@ -3224,7 +3225,8 @@ $$A\approx \left(\begin{array}{c|ccc}
                 \item Wir werden die Details der Konstruktion aus (a) im Folgenden nicht mehr brauchen, sondern nur (?)
                 \item \begin{align*}
                     \text{die universelle Eigenschaft (UT): }&\text{ Für jeden $R$-Modul $L$ und jede $R$-bil. Abb. $\beta M\times N\longrightarrow L$ }\\
-                    &\text{ existiert genau ein $R$-Modulhom. $f:M\otimes_R N\longrightarrow L$ mit $f(m\otimes n)\beta(m,n)$}\\
+                    &\text{ existiert genau ein $R$-Modulhom. $f:M\otimes_R N\longrightarrow L$ mit}\\
+                    &\text{$f(m\otimes n)\beta(m,n)$}\\
                     &\text{ und alle $m\in M,n\in N$ }
                 \end{align*}
                 \item die Aussage aus (c), d.h. Elemente aus $M\otimes_R N$ sind von der Form $\sum\limits_{i=1}^{k}m_i\otimes n_i,$ sind also endliche Summen reiner Tensoren mit Rechenregeln aus (c).
@@ -3234,15 +3236,11 @@ $$A\approx \left(\begin{array}{c|ccc}
             \end{itemize}
         \end{anm}
         \begin{bsp}
-            \begin{align*}
-            \intertext{$\Z/2\Z\oplus_{\Z}\Z/3\Z=0$}
-            \intertext{denn:}
-            \intertext{Für $a\in \Z/2\Z,b\in \Z/3\Z$ ist}
-            a\otimes b&\underset{3\equiv 1(mod 2)}{=} (3a)\otimes b\\
-            &=a\otimes (3b)\\
-            &\underset{3\equiv 0(mod 3)}{=} a\otimes 0\\
-            &= 0
-            \end{align*}
+            
+            $\Z/2\Z\oplus_{\Z}\Z/3\Z=0$,
+            denn:
+            $$\text{Für } a\in \Z/2\Z,b\in \Z/3\Z \text{ ist }a\otimes b\underset{3\equiv 1(\mathrm{mod} 2)}{=} (3a)\otimes b=a\otimes (3b)\underset{3\equiv 0(\mathrm{mod} 3)}{=} a\otimes 0= 0$$
+           
         \end{bsp}
         \begin{bem}
             Sei $M$ $R$-Modul.
@@ -3256,12 +3254,12 @@ $$A\approx \left(\begin{array}{c|ccc}
             \end{align*}
         \end{bem}
         \begin{proof}
-            Die Abbildung $R/times M\longrightarrow M, (a,m)\longmapsto am$ ist $R$-bilinear. $\overset{\text{(UT)}}{\implies}$ Es existiert ein $R$-Modulhom. $f:R\otimes_R M\longrightarrow M$ mit $f(a\otimes m)=am$ (das ist das $f$ aus der Formulierung der Aussage). Die Abbildung $f:M\longrightarrow R\otimes_R M,m\longmapsto 1\otimes m$ ist ein $R$-Modulhom., denn:
+            Die Abbildung $R\times M\longrightarrow M, (a,m)\longmapsto am$ ist $R$-bilinear. $\overset{\text{(UT)}}{\implies}$ Es existiert ein $R$-Modulhom. $f:R\otimes_R M\longrightarrow M$ mit $f(a\otimes m)=am$ (das ist das $f$ aus der Formulierung der Aussage). Die Abbildung $f:M\longrightarrow R\otimes_R M,m\longmapsto 1\otimes m$ ist ein $R$-Modulhom., denn:
             \begin{align*}
                 g(m+n)&=1\otimes (m+n)=1\otimes m+1\otimes n=g(m)+g(n),\\
                 g(rm)&= 1\otimes 1\otimes (rm)=r(1\otimes m)=rg(m)
             \end{align*}
-            Es ist $(g\circ f)(a\otimes m)=g(am)=1\otimes(am)=(a\cdot 1)\oplus m=a\otimes m $ $\overset{(a\otimes m)\text{ ist}}g\circ f= \id_{R\otimes_RM}.$ ES von $R\otimes_R M:$
+            Es ist $(g\circ f)(a\otimes m)=g(am)=1\otimes(am)=(a\cdot 1)\oplus m=a\otimes m $ $\overset{(a\otimes m)\text{ ist}}{\implies}g\circ f= \id_{R\otimes_RM}.$ ES von $R\otimes_R M:$
             Es ist $(f\circ g)(m)=f(1\otimes m)=1m=m\implies f\circ g= \id_M\implies f,g$ sind invers zueinander.
         \end{proof}
         \begin{bsp}
@@ -3293,7 +3291,8 @@ $$A\approx \left(\begin{array}{c|ccc}
                     \text{Es ist }x&=\sum_{i=1}^{k}(r_i+I)\otimes m_i=\sum_{i=1}^{k}r_i((1+I)\otimes m_i)=(1+I)\otimes \underbrace{\sum_{i=1}^{k}r_im_i}_{:=m}\\
                     &\implies 0=f(x)=f((1+I)\otimes m)=m+IM\implies m\in IM\\
                     &\implies \text{ Es existiert }a_i\in I,\tilde{m_i}\in M \text{ mit }m=\sum_{i=1}^{r}a_i\tilde{m_i}\\
-                    &\implies x=(1+I)\otimes m= (1+I)\otimes \sum_{i=1}^{r}a_i\tilde{m_i}=\sum_{i=1}^{r}(1+I)\otimes a_im_i=\sum_{i=1}^{r}(a_i+I)\otimes m_i=\sum_{i=1}^{r}(0+I)\otimes m_i
+                    &\implies x=(1+I)\otimes m= (1+I)\otimes \sum_{i=1}^{r}a_i\tilde{m_i}\\
+                    &=\sum_{i=1}^{r}(1+I)\otimes a_im_i=\sum_{i=1}^{r}(a_i+I)\otimes m_i=\sum_{i=1}^{r}(0+I)\otimes m_i\\
                     &= 0
                 \end{align*}
             \end{enumerate}
